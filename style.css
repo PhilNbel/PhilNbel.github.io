@@ -1,0 +1,99 @@
+@import url('https://fonts.googleapis.com/css?family=Aldrich');
+@import url('https://fonts.googleapis.com/css?family=Azeret Mono');
+body{
+	background-image:url("./images/stars_bg_light.jpg");
+	background-size: cover;
+	color: DodgerBlue;
+	font-family: 'Azeret Mono';
+	cursor:default;
+}
+
+h1{
+	background: rgba(0,0,0,0.9);
+	font-size: 4.3vh;
+	opacity: 0.9;
+	text-align: center;
+	vertical-align: middle;
+	
+	margin-left: 25%;
+	margin-right: 25%;
+	padding-top: 40px;
+	padding-bottom: 30px;
+	padding-left: 5%;
+	padding-right: 5%;
+	border-radius: 20px;
+}
+textBox{
+	background:rgba(0,0,0,0.5);
+	border-radius: 15px;
+	padding-right: 25px;
+	padding-left: 25px;
+	text-align: center;
+}
+p{
+	color: DodgerBlue;
+	font-size: 2.0vh;
+}
+a{
+	text-decoration: none;
+	background-color: none;
+	color: inherit;
+}
+
+a:hover,tardis:hover{
+	color: rgba(75, 125, 255, 0.8);
+}
+ways{
+	display: flex;
+	position: absolute;
+	padding-top: 5%;
+	left: 5%;
+	right: 5%;
+	width: 100vw;
+}
+.way{
+	position: relative;
+	background: rgba(175, 255, 25, .8);
+	cursor: pointer;
+	text-align: center;
+	width: 23vw;
+	height: 18vh;
+	margin: 5% 20px 5% 20px;
+	padding-top: 2%; 
+	padding-left: 3%;
+	padding-right: 3%;
+	padding-bottom: 2%;
+	border-radius: 10px;
+}
+name{
+	display: block;
+	color: black;
+}
+
+container{
+	display: flex;
+	display: inline-block;
+	flex-direction: column;
+	text-align: center;"
+	font-size: 14;
+}
+
+h4{
+	position: relative;
+	text-decoration: underline;
+	font-size: 20px;
+}
+
+
+
+/*@media (min-width: 768px) 
+ {
+    body
+    {
+        font-size: 17px; 
+    }
+    h1
+    {
+        font-size:24px;
+    }
+ }*/
