@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<!--<link rel="stylesheet" href="./knight.css">-->
+		<title>Knight</title>
+		<script type="text/javascript">
+			
+			//Format : [Aspect name] = [ [Aspect score], [carac1], [carac2], [carac3], [sparePoints] ]
+			var stats = [
+				[2, 1, 1, 1, 0], //chair, deplacement endurance force
+				[2, 1, 1, 1, 0], //bete
+				[2, 1, 1, 1, 0], //machine
+				[2, 1, 1, 1, 0], //dame
+				[2, 1, 1, 1, 0] //masque
+			];
+			var names =["Beast", "Movement", "Endurance", "Strength"]
+			var tower = false;
+			const archetypes = [];
+			const deeds = [2,0,2,1,3,1,4,1,3,3,1,2,4,3,0,0,4];
+
+			function unlock(string){
+				document.getElementsByClass("req"+string).style.display="block";
+			}
+
+			function calculate(){
+
+			}
+			function finalize(){
+				for(var i; i=0; i++){
+					if(stats[i/4][i%4] >= 4){
+						unlock(names[i]);
+					}
+				}
+				document.getElement
+			}
+		</script>
+	</head>
+	<body>
+		<fieldset>
+			<legend>Archetype</legend>
+			<select id="archetype">
+				<option value=-1>--Choisir--</option>
+				<option value=0>Artiste</option>
+				<option value=1>Célébrité</option>
+				<option value=2>Citoyen</option>
+				<option value=3>Combattant</option>
+				<option value=4>Ex Agent Secret</option>
+				<option value=5>Ex Nodachi</option>
+				<option value=6>Force de la nature</option>
+				<option value=7>Génie</option>
+				<option value=8>Hors la loi</option>
+				<option value=9>Indépendant</option>
+				<option value=10>Leader né</option>
+				<option value=11>Membre d'une société secrète</option>
+				<option value=12>Rebut</option>
+				<option value=13>Résident des territoires libres</option>
+				<option value=14>Survivant</option>
+				<option value=15>Voyageur</option>
+				<option value=16>Custom</option>
+			</select>
+		</fieldset>
+
+		<fieldset>
+			<legend>Arcanes</legend>
+			<input type="number" id="arcane0" min=0 max=21/>
+			<input type="number" id="arcane1" min=0 max=21/>
+			<input type="number" id="arcane2" min=0 max=21/>
+			<input type="number" id="arcane3" min=0 max=21/>
+			<input type="number" id="arcane4" min=0 max=21/>			
+		</fieldset>
+
+		<fieldset>
+			<legend>
+				Meta-armure
+			</legend>
+			<select id="armor">
+				<option value=-1>--Choisir--</option>
+				<option value=0>Barbarian</option>
+				<option value=1>Bard</option>
+				<option value=2>Druid</option>
+				<option value=3>Monk</option>
+				<option value=4>Paladin</option>
+				<option value=5>Priest</option>
+				<option value=6>Psion</option>
+				<option value=7>Ranger</option>
+				<option value=8>Rogue</option>
+				<option value=9>Sorcerer</option>
+				<option value=10>Warmaster</option>
+				<option value=11>Warrior</option>
+				<option value=12>Wizard</option>
+			</select>
+		</fieldset>
+		
+		<fieldset>
+			<legend>
+				Division
+			</legend>
+			<select id="division">
+				<option value="">--Choisir--</option>
+				<option value=0>Cyclops</option>
+				<option value=1>Dragon</option>
+				<option value=2>Gargoyle</option>
+				<option value=3>Giant</option>
+				<option value=4>Gryphon</option>
+				<option value=5>Korrigan</option>
+				<option value=6>Ogre</option>
+				<option value=7>Tarrasque</option>
+			</select>
+		</fieldset>
+		
+		<div id="deeds" style="display: none;">
+			<fieldset>			
+				<input type="radio" name="deed" value=0 class="reqKnowledge reqTech"> Architecte de la Première Arche </input>
+				<input type="radio" name="deed" value=1 class="reqFlesh"> Combat de Titans </input>
+				<input type="radio" name="deed" value=2 class="reqKnowledge reqTech"> Concepteur de la première Méta-Armure </input>
+				<input type="radio" name="deed" value=3 class="reqAggro reqComposure"> Défenseur des Arts (Beast)</input>
+				<input type="radio" name="deed" value=4 class="reqAggro reqComposure"> Défenseur des Arts (Lady)</input>
+				<input type="radio" name="deed" value=5 class="reqBeast"> Derrière les lignes ennemies </input>
+				<input type="radio" name="deed" value=6 class="reqAcuity reqInstinct"> Eclaire-Ombres </input>
+				<input type="radio" name="deed" value=7 class="reqAggro reqComposure"> Espoir renaissant </input>
+				<input type="radio" name="deed" value=8 class="reqAura reqCombat"> Fondateur d'Avalon </input>
+				<input type="radio" name="deed" value=9 class="reqAcuity reqEloquence"> Guide </input>
+				<input type="radio" name="deed" value=10 class="reqCombat reqRanged"> Héros de Guerre (Beast)</input>
+				<input type="radio" name="deed" value=11 class="reqCombat reqRanged"> Héros de Guerre (Machine)</input>				
+				<input type="radio" name="deed" value=12 class="reqAcuity reqComposure"> Protecteur (Mask)</input>
+				<input type="radio" name="deed" value=13 class="reqAcuity reqComposure"> Protecteur (Lady)</input>
+				<input type="radio" name="deed" value=14 class="reqEndurance reqStrength"> Supplicié des Ombres </input>
+				<input type="radio" name="deed" value=15 class="reqAggro reqEndurance"> Survivant de la Peste Rouge </input>
+				<input type="radio" name="deed" value=16 class="reqAcuity reqStealth"> Tranche-Ombres </input>
+			</fieldset>
+		</div>
+
+		<div id="sheet" style="display: none;">
+			<div class="aptitude" style="display:inline-block;">
+				<h4>Chair</h4>
+				<div id="flesh" class="aptitude_score"> 2 </div>
+				<div class="carac_name">Déplacement</div>
+				<div class="carac_score">1</div>
+				<div class="carac_name">Endurance</div>
+				<div class="carac_score">1</div>
+				<div class="carac_name">Force</div>
+				<div class="carac_score">1</div>
+				<div class="carac_name">Points a répartir</div>
+				<div class="carac_score">0</div>
+			</div>
+			<div class="aptitude" style="display:inline-block;">
+				<h4>Bête</h4>
+				<div id="beast" class="aptitude_score"> 2 </div>
+				<div class="carac_name">Combat</div>
+				<div class="carac_score">1</div>
+				<div class="carac_name">Hargne</div>
+				<div class="carac_score">1</div>
+				<div class="carac_name">Instinct</div>
+				<div class="carac_score">1</div>
+				<div class="carac_name">Points a répartir</div>
+				<div class="carac_score">0</div>
+			</div>
+			<div class="aptitude" style="display:inline-block;">
+				<h4>Machine</h4>
+				<div id="machine" class="aptitude_score"> 2 </div>
+				<div class="carac_name">Savoir</div>
+				<div class="carac_score">1</div>
+				<div class="carac_name">Technique</div>
+				<div class="carac_score">1</div>
+				<div class="carac_name">Tir</div>
+				<div class="carac_score">1</div>
+				<div class="carac_name">Points a répartir</div>
+				<div class="carac_score">0</div>
+			</div>
+			<div class="aptitude" style="display:inline-block;">
+				<h4>Dame</h4>
+				<div id="dame" class="aptitude_score"> 2 </div>
+				<div class="carac_name">Aura</div>
+				<div class="carac_score">1</div>
+				<div class="carac_name">Parole</div>
+				<div class="carac_score">1</div>
+				<div class="carac_name">Sang-Froid</div>
+				<div class="carac_score">1</div>
+				<div class="carac_name">Points a répartir</div>
+				<div class="carac_score">0</div>
+			</div>
+			<div class="aptitude" style="display:inline-block;">
+				<h4>Masque</h4>
+				<div id="mask" class="aptitude_score"> 2 </div>
+				<div class="carac_name">Dextérité</div>
+				<div class="carac_score">1</div>
+				<div class="carac_name">Discrétion</div>
+				<div class="carac_score">1</div>
+				<div class="carac_name">Perception</div>
+				<div class="carac_score">1</div>
+			</div>
+		</div>
+	</body>
+</html>
