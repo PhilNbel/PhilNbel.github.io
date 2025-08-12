@@ -1,12 +1,12 @@
 <!DOCTYPE html>
 <html>
 	<head>
-		<!--<link rel="stylesheet" href="./knight.css">-->
+		<link rel="stylesheet" href="./blason.css">
 		<title>Knight</title>
 		<script type="text/javascript">
 			
 			//Format : [Aspect name] = [ [Aspect score], [carac1], [carac2], [carac3], [sparePoints] ]
-			var stats = [
+			const initial_stats = [
 				[2, 1, 1, 1, 0], //0.chair, 1.deplacement, 2.endurance, 3.force
 				[2, 1, 1, 1, 0], //4.bete, 5.combat, 6.hargne, 7.instinct
 				[2, 1, 1, 1, 0], //8.machine, 9.savoir, 10.technique, 11.tir
@@ -14,39 +14,46 @@
 				[2, 1, 1, 1, 0] //16.masque, 17.dexterite, 18.discretion, 19.perception
 				//20. Combat ou tir
 			];
+
 			var names =["Flesh", "Movement", "Endurance", "Strength", "Beast", "Combat", "Aggro", "Instinct", "Machine", "Knowledge", "Tech", "Ranged", "Lady", "Aura", "Eloquence", "Composure", "Mask", "Dexterity", "Stealth", "Acuity"];
 			var fool = true;
 			var tower = false;
 			var customArchetype = false;
 			const archetypes = [[6,13], [13,14], [10,18], [5,11], [18,20], [17,20], [2,3], [9,10], [15,18], [7,19], [7,13], [9,20], [1,2], [9,14], [2,6], [1,19]];
-			const arcanas = [5, 3, 4, 2, 3, 1, 1, 2, 2, 1, 0, 0, 4, 0, 1, 5, 4, 4, 3, 3, 0];
+			const arcanas = [5, 3, 4, 2, 3, 2, 1, 1, 2, 2, 1, 0, 0, 4, 0, 1, 5, 4, 4, 3, 3, 0];
 			const deeds = [2, 0, 2, 1, 3, 1, 4, 1, 3, 3, 1, 2, 4, 3, 0, 0, 4];
 			const armor = [[2,3,5,6], [1,13,14,17], [5,7,10,11], [5,6,11,15], [2,3,11,19], [2,3,9,10], [7,9,15,19], [1,11,17,18], [1,5,17,18], [2,7,15,17], [2,3,13,15], [1,5,11,17], [5,7,13,15]];
 			const divisions  = [2, 3, 0, 2, 4, 4, 2, 2];
 
 			function unlock(string){
 				//Unlocking a deed is simply displaying it
-				document.getElementsByClass("req"+string).style.display="block";
+				var toUnlock = document.getElementsByClassName("req"+string);
+				console.log(toUnlock);
+				for(var i = 0; i<toUnlock.length-1;i++){
+					toUnlock[i].style.display="block";
+				}
 			}
 
-			function increase(integer){
-				stats[integer/4][integer%4]++;
-			}
+			/*function increase(integer){
+				stats[Math.floor(integer/4)][integer%4]++;
+			}*/
 
 			function calculate(){
-				
+				let stats = JSON.parse(JSON.stringify(initial_stats));
+				console.log("calculating deeds...");
 				//We apply the archetypes
-				var arch = document.getElementById("archetype").value;
-				increase(archetypes[arch][0]);
-				increase(archetypes[arcn][1]);
+				var arch = parseInt(document.getElementById("archetype").value);
+				stats[Math.floor(archetypes[arch][0]/4)][archetypes[arch][0]%4]++;
+				stats[Math.floor(archetypes[arch][1]/4)][archetypes[arch][1]%4]++;
 				//Then the arcanas
 
-				var arcanes = document.getElementsByClass("arcane");
-				for (var i = arcanes.length; i >= 0; i--) {
-					var arca = arcanes[i].value;
-					if(arcanas[arca]!=5){
-						stats[arca][0]++;
-						stats[arca][4] += 3;
+				var arcanes = document.getElementsByClassName("arcane");
+				for (var i = arcanes.length-1; i >= 0; i--) {
+					var arca = parseInt(arcanes[i].value);
+						var toIncrease = arcanas[arca];
+					if(toIncrease!=5){
+						stats[toIncrease][0]++;
+						stats[toIncrease][4] += 3;
 					} else{
 						if(arca == 0){
 							fool = true;
@@ -58,111 +65,153 @@
 				}
 
 				//Then we unlock the deeds
-				for(var i=0; i<names; i++){
-					if(stats[i/4][i%4] >= 4){
+				for(var i=0; i<names.length; i++){
+					if(stats[Math.floor(i/4)][i%4] >= 4){
+						console.log(names[i]);
 						unlock(names[i]);
 					}
 				}
+				//and we don't forget to display the deeds div
+				document.getElementById("deeds").style.display="block";
 			}
+
 			function finalize(){
-				for(var i; i=0; i++){
-				}
-				document.getElementById("sheet").
+				//for(var i; i=0; i++){
+				//}
+				//document.getElementById("sheet").
 			}
 		</script>
 	</head>
 	<body>
-		<fieldset>
-			<legend>Archetype</legend>
-			<select id="archetype">
-				<option value=-1>--Choisir--</option>
-				<option value=0>Artiste</option>
-				<option value=1>Célébrité</option>
-				<option value=2>Citoyen</option>
-				<option value=3>Combattant</option>
-				<option value=4>Ex Agent Secret</option>
-				<option value=5>Ex Nodachi</option>
-				<option value=6>Force de la nature</option>
-				<option value=7>Génie</option>
-				<option value=8>Hors la loi</option>
-				<option value=9>Indépendant</option>
-				<option value=10>Leader né</option>
-				<option value=11>Membre d'une société secrète</option>
-				<option value=12>Rebut</option>
-				<option value=13>Résident des territoires libres</option>
-				<option value=14>Survivant</option>
-				<option value=15>Voyageur</option>
-				<option value=16>Custom</option>
-			</select>
-		</fieldset>
+		<div id="primary">
+			<fieldset>
+				<legend>Archetype</legend>
+				<select id="archetype">
+					<option value="-1">--Choisir--</option>
+					<option value="0">Artiste</option>
+					<option value="1">Célébrité</option>
+					<option value="2">Citoyen</option>
+					<option value="3">Combattant</option>
+					<option value="4">Ex Agent Secret</option>
+					<option value="5">Ex Nodachi</option>
+					<option value="6">Force de la nature</option>
+					<option value="7">Génie</option>
+					<option value="8">Hors la loi</option>
+					<option value="9">Indépendant</option>
+					<option value="10">Leader né</option>
+					<option value="11">Membre d'une société secrète</option>
+					<option value="12">Rebut</option>
+					<option value="13">Résident des territoires libres</option>
+					<option value="14">Survivant</option>
+					<option value="15">Voyageur</option>
+					<option value="16">Custom</option>
+				</select>
+			</fieldset>
 
-		<fieldset>
-			<legend>Arcanes</legend>
-			<input type="number" class="arcane" min=0 max=21/>
-			<input type="number" class="arcane" min=0 max=21/>
-			<input type="number" class="arcane" min=0 max=21/>
-			<input type="number" class="arcane" min=0 max=21/>
-			<input type="number" class="arcane" min=0 max=21/>			
-		</fieldset>
+			<fieldset>
+				<legend>Arcanes</legend>
+				<input type="number" class="arcane" min="0" max="21"/>
+				<input type="number" class="arcane" min="0" max="21"/>
+				<input type="number" class="arcane" min="0" max="21"/>
+				<input type="number" class="arcane" min="0" max="21"/>
+				<input type="number" class="arcane" min="0" max="21"/>			
+			</fieldset>
 
-		<fieldset>
-			<legend>
-				Meta-armure
-			</legend>
-			<select id="armor">
-				<option value=-1>--Choisir--</option>
-				<option value=0>Barbarian</option>
-				<option value=1>Bard</option>
-				<option value=2>Druid</option>
-				<option value=3>Monk</option>
-				<option value=4>Paladin</option>
-				<option value=5>Priest</option>
-				<option value=6>Psion</option>
-				<option value=7>Ranger</option>
-				<option value=8>Rogue</option>
-				<option value=9>Sorcerer</option>
-				<option value=10>Warmaster</option>
-				<option value=11>Warrior</option>
-				<option value=12>Wizard</option>
-			</select>
-		</fieldset>
-		
-		<fieldset>
-			<legend>
-				Division
-			</legend>
-			<select id="division">
-				<option value="">--Choisir--</option>
-				<option value=0>Cyclops</option>
-				<option value=1>Dragon</option>
-				<option value=2>Gargoyle</option>
-				<option value=3>Giant</option>
-				<option value=4>Gryphon</option>
-				<option value=5>Korrigan</option>
-				<option value=6>Ogre</option>
-				<option value=7>Tarrasque</option>
-			</select>
-		</fieldset>
+			<fieldset>
+				<legend>
+					Meta-armure
+				</legend>
+				<select id="armor">
+					<option value="-1">--Choisir--</option>
+					<option value="0">Barbarian</option>
+					<option value="1">Bard</option>
+					<option value="2">Druid</option>
+					<option value="3">Monk</option>
+					<option value="4">Paladin</option>
+					<option value="5">Priest</option>
+					<option value="6">Psion</option>
+					<option value="7">Ranger</option>
+					<option value="8">Rogue</option>
+					<option value="9">Sorcerer</option>
+					<option value="10">Warmaster</option>
+					<option value="11">Warrior</option>
+					<option value="12">Wizard</option>
+				</select>
+			</fieldset>
+			
+			<fieldset>
+				<legend>
+					Division
+				</legend>
+				<select id="division">
+					<option value="-1">--Choisir--</option>
+					<option value="0">Cyclops</option>
+					<option value="1">Dragon</option>
+					<option value="2">Gargoyle</option>
+					<option value="3">Giant</option>
+					<option value="4">Gryphon</option>
+					<option value="5">Korrigan</option>
+					<option value="6">Ogre</option>
+					<option value="7">Tarrasque</option>
+				</select>
+			</fieldset>
+
+		<button id="deeds" onclick="calculate()"> Hauts-faits possibles </button>
+		</div>
 		
 		<div id="deeds" style="display: none;">
 			<fieldset>			
-				<input type="radio" name="deed" value=0 class="reqKnowledge reqTech"> Architecte de la Première Arche </input>
-				<input type="radio" name="deed" value=1 class="reqFlesh"> Combat de Titans </input>
-				<input type="radio" name="deed" value=2 class="reqKnowledge reqTech"> Concepteur de la première Méta-Armure </input>
-				<input type="radio" name="deed" value=3 class="reqAggro reqComposure"> Défenseur des Arts (Beast)</input>
-				<input type="radio" name="deed" value=4 class="reqAggro reqComposure"> Défenseur des Arts (Lady)</input>
-				<input type="radio" name="deed" value=5 class="reqBeast"> Derrière les lignes ennemies </input>
-				<input type="radio" name="deed" value=6 class="reqAcuity reqInstinct"> Eclaire-Ombres </input>
-				<input type="radio" name="deed" value=7 class="reqAggro reqComposure"> Espoir renaissant </input>
-				<input type="radio" name="deed" value=8 class="reqAura reqCombat"> Fondateur d'Avalon </input>
-				<input type="radio" name="deed" value=9 class="reqAcuity reqEloquence"> Guide </input>
-				<input type="radio" name="deed" value=10 class="reqCombat reqRanged"> Héros de Guerre (Beast)</input>
-				<input type="radio" name="deed" value=11 class="reqCombat reqRanged"> Héros de Guerre (Machine)</input>				
-				<input type="radio" name="deed" value=12 class="reqAcuity reqComposure"> Protecteur (Mask)</input>
-				<input type="radio" name="deed" value=13 class="reqAcuity reqComposure"> Protecteur (Lady)</input>
-				<input type="radio" name="deed" value=14 class="reqEndurance reqStrength"> Supplicié des Ombres </input>
-				<input type="radio" name="deed" value=15 class="reqAggro reqEndurance"> Survivant de la Peste Rouge </input>
-				<input type="radio" name="deed" value=16 class="reqAcuity reqStealth"> Tranche-Ombres </input>
+				<div class="deed">
+					<input type="radio" value="0" class="reqKnowledge reqTech"/><label> Architecte de la Première Arche </label>
+				</div>
+				<div class="deed">
+					<input type="radio" value="1" class="reqFlesh"/><label> Combat de Titans </label>
+				</div>
+				<div class="deed">
+					<input type="radio" value="2" class="reqKnowledge reqTech"/><label> Concepteur de la première Méta-Armure </label>
+				</div>
+				<div class="deed">
+					<input type="radio" value="3" class="reqAggro reqComposure"/><label> Défenseur des Arts (Beast)</label>
+				</div>
+				<div class="deed">
+					<input type="radio" value="4" class="reqAggro reqComposure"/><label> Défenseur des Arts (Lady)</label>
+				</div>
+				<div class="deed">
+					<input type="radio" value="5" class="reqBeast"/><label> Derrière les lignes ennemies </label>
+				</div>
+				<div class="deed">
+					<input type="radio" value="6" class="reqAcuity reqInstinct"/><label> Eclaire-Ombres </label>
+				</div>
+				<div class="deed">
+					<input type="radio" value="7" class="reqAggro reqComposure"/><label> Espoir renaissant </label>
+				</div>
+				<div class="deed">
+					<input type="radio" value="8" class="reqAura reqCombat"/><label> Fondateur d'Avalon </label>
+				</div>
+				<div class="deed">
+					<input type="radio" value="9" class="reqAcuity reqEloquence"/><label> Guide </label>
+				</div>
+				<div class="deed">
+					<input type="radio" value="10" class="reqCombat reqRanged"/><label> Héros de Guerre (Beast)</label>
+				</div>
+				<div class="deed">
+					<input type="radio" value="11" class="reqCombat reqRanged"/><label> Héros de Guerre (Machine)</label>
+					</div>				
+				<div class="deed">
+					<input type="radio" value="12" class="reqAcuity reqComposure"/><label> Protecteur (Mask)</label>
+				</div>
+				<div class="deed">
+					<input type="radio" value="13" class="reqAcuity reqComposure"/><label> Protecteur (Lady)</label>
+				</div>
+				<div class="deed">
+					<input type="radio" value="14" class="reqEndurance reqStrength"/><label> Supplicié des Ombres </label>
+				</div>
+				<div class="deed">
+					<input type="radio" value="15" class="reqAggro reqEndurance"/><label> Survivant de la Peste Rouge </label>
+				</div>
+				<div class="deed">
+					<input type="radio" value="16" class="reqAcuity reqStealth"/><label> Tranche-Ombres </label>
+				</div>
 			</fieldset>
 		</div>
 
