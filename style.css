@@ -2,7 +2,7 @@
 @import url('https://fonts.googleapis.com/css?family=Azeret Mono');
 body{
 	background-image:url("./images/stars_bg_light.jpg");
-	background-size: cover;
+	background-size: stretch;
 	color: DodgerBlue;
 	font-family: 'Azeret Mono';
 	cursor:default;
@@ -17,8 +17,8 @@ h1{
 	
 	margin-left: 25%;
 	margin-right: 25%;
-	padding-top: 40px;
-	padding-bottom: 30px;
+	padding-top: 12px;
+	padding-bottom: 9px;
 	padding-left: 5%;
 	padding-right: 5%;
 	border-radius: 20px;
@@ -40,30 +40,36 @@ a{
 	color: inherit;
 }
 
-a:hover,tardis:hover{
+a:hover, tardis:hover{
 	color: rgba(75, 125, 255, 0.8);
 }
 ways{
 	display: flex;
-	position: absolute;
-	padding-top: 5%;
-	left: 5%;
-	right: 5%;
-	width: 100vw;
+	padding-top: 1%;
+	width: 98vw;
 }
-.way{
+ways > a{
 	position: relative;
-	background: rgba(175, 255, 25, .8);
 	cursor: pointer;
 	text-align: center;
 	width: 23vw;
-	height: 18vh;
-	margin: 5% 20px 5% 20px;
+	height: fit-content;
+	margin: auto;
 	padding-top: 2%; 
 	padding-left: 3%;
 	padding-right: 3%;
 	padding-bottom: 2%;
 	border-radius: 10px;
+}
+
+#way_center{
+	background:rgba(25, 175, 255, 0.8);
+}
+#way_left{
+	background: rgba(175, 25, 255, 0.8);
+}
+#way_right{
+	background: rgba(175, 255, 25, .8);
 }
 name{
 	display: block;
@@ -84,6 +90,9 @@ h4{
 	font-size: 20px;
 }
 
+a:hover{
+	background: rgba(25, 25, 25, 0.8);
+}
 
 
 /*@media (min-width: 768px) 
