@@ -1,0 +1,73 @@
+Cleric
+
+	AP 40, EP 90, FF 14, Gen 1.5/5
+
+	Background
+
+		If the Knights in a Priest Armor are much more than glorified mechanics, pilots of a Cleric suits are not. But this meta-armor, tailored by mechanics for mechanics was devised as a way to field specialists on dangerous missions, where they could not be properly escorted yet a traditional Priest pilot would lack sufficient technical knowledge. Whether said specialists are reckless, generous or hold a general disregard for their safety, only the bravest of untrained technicians are willing to suit up and become a Knight.
+
+		Its advanced repair capabilities and its Infinity alpha energy reactor allow the Knight to embark on longer and more combat heavy mission, as long as it is sufficiently protected from heavy ordinance and larger enemies. It also allows for greater energy consumption, generally used for targeting or evasive enhancements.
+
+		The mindset of the Cleric model's development revolved around lightness, speed and mobility. Untailored to frontal fights, it is made for skirmishes and support as Avalon developped a strategy putting less emphasis on personal prowess and more on acting as a unit. If it does require protection for more heavily-armed suits, it has the tactical ability to single-handedly change the tide of a battle and multiplies the attrition capacity of the unit they are part of.
+
+
+	General presentation
+
+		Developped from a Priest armor, the Cleric suits aims to push the healing capabilities of the Priest armor to it's utmost, replacing the 3 auxiliary appendages with a modified charging port, hosting a plethora of specialized NanoC. Its compatibility also lets the Cleric pilot hijack machines hosting such a port, as the nano-machine wire the meta-armor directly to the inner components of the target.
+
+		The specialized NanoC have been modified to be able to shred metal from a source to use as material for repairs, although the dismantling process can sometimes be imprecise, damaging the finer parts of the dismantled items.
+
+		Hosting an Infinity alpha energy reactor, the Cleric model sacrificed some of the already thin plating of the Priest frame it was based on to incorporate holographic projects and stronger force field relays. Although not impervious to it, it's thick force fields lets the user shrug off small arms fire with minimal damage, and its servomotors, borrowed from a Warrior suit, let the user navigate through the battlefield to reposition and come to aid to their fellow Knights.
+
+	ODs:
+		Movement 
+		Tech
+		Dexterity
+		Composure
+
+	Abilities
+
+		Blurred Mode
+			
+			The armor uses short range holographic projectors to create uneven refraction in a short area around the armor. This creates a distorted and blurred image that make the Cleric harder to hit.
+
+			Effect: The Cleric receives a +3 Defense and a +1 Reaction bonus
+
+			Energy: 6
+			Activation: Move action, Combat action
+			Duration: 1 minute or 10 rounds during a conflict phase
+
+		Mechanic Mode
+			Field Repairs
+
+				The character can repair the meta-armor, vehicle, or equipment of a person or ally they are making contact with.
+
+				Effect: The Cleric restores 3d6 + 5 armor points to the target vehicle, meta-armor or piece of equipment
+				Energy: 6
+				Activation: Move action
+				Duration: Instantaneous
+
+			Patch
+
+				The character disassembles at least 50 pounds of refined metal to patch a hole in or repair the meta-armor, vehicle, or equipment of a person or ally. The character needs to be in contact with both targets.
+
+				If the disassembled item has armor points, it loses 25 of them. If the disassembled item contains electronics, roll a d6. On a 4 or less, the electronics is too damaged to function properly. In the case of a meta-armor, this means the loss of use of a limb, mode or 2 enhancements, depending on the area disassembled.
+
+				Effect: The Cleric restores 4d6 + 10 armor points to the target vehicle, meta-armor or piece of equipment
+				Energy: 4
+				Activation: Combat action
+				Duration: Instantaneous
+
+Evolutions:
+	150 | Burred Mode gains an extra 2 Defense and 1 Reaction (bringing it to +5 each)
+	200 | Blurred Mode can now be applied to allies the Cleric makes contact with (6 EP per ally, contact needs to be maintained)
+	250 | Mechanic Mode trades 2d6 of healing for a flat 20 (bringing Field Repairs to 1d6+25 and Patch to 2d6+30)
+-----
+
+Man and Machine
+
+	Eric ayant developpe sa propre meta-armure sur mesure, il a pu calibrer tous les capteurs aux moindre de ses gestes. Cette liberte de mouvement lui permet de reagir et de se deplacer bien plus librement (+1 Defense, +1 Reaction, +1 Deplacement, +1 OD de Deplacement)
+
+Specialist
+
+	Sa connaissance avancee des meta-armures ainsi que du fonctionnement de la Cleric, en tant que concepteur, lui permettent de manoeuvrer les nano-machines plus precisement, lui permettant d'eviter les composants electroniques de ce qu'il demantele. (Pas de risque d'endommager l'electronique en utilisant Patch)
